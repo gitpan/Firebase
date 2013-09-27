@@ -1,6 +1,6 @@
 package Firebase::Auth;
 {
-  $Firebase::Auth::VERSION = '0.0100';
+  $Firebase::Auth::VERSION = '0.0200';
 }
 
 use strict;
@@ -20,6 +20,11 @@ has token_version => (
 has secret => (
     is      => 'rw',
     required=> 1,
+);
+
+has data => (
+    is          => 'rw',
+    predicate   => 'has_data',
 );
 
 has token_seperator => (
@@ -49,7 +54,7 @@ has debug => (
 
 sub create_token {
     my ($self, $data) = @_;
-    return $self->encode_token($self->create_claims($data));
+    return $self->encode_token($self->create_claims($data || $self->data));
 }
 
 sub create_claims {
@@ -96,13 +101,13 @@ Firebase::Auth - Auth token generation for firebase.com.
 
 =head1 VERSION
 
-version 0.0100
+version 0.0200
 
 =head1 SYNOPSIS
 
  use Firebase::Auth;
  
- my $token = Firebase::Auth->new(token => 'xxxxxxxxx', admin => 'true' )->create_token(\%data);
+ my $token = Firebase::Auth->new(token => 'xxxxxxxxx', admin => 'true', data => \%user_data )->create_token();
 
 
 =head1 DESCRIPTION
@@ -119,17 +124,21 @@ Constructor.
 
 =over
 
+=item user_data
+
+Optional. If you don't specify this, then you need to specify it when you call create_token(). This should be a hash reference of all the data you want to pass for user data. This data will be available as the C<auth> object in Firebase's security rules.
+
 =item secret
 
 Required. The api secret token provided by firebase.com.
 
 =item admin
 
-Defaults to C<false>. If set to C<true> then full access will be granted for this token.
+Defaults to C<\0>. If set to C<\1> (a reference to zero or one) then full access will be granted for this token.
 
 =item debug
 
-Defaults to C<false>. If set to C<true> then verbose error messages will be returned from service calls.
+Defaults to C<\0>. If set to C<\1> (a reference to zero or one) then verbose error messages will be returned from service calls.
 
 =item expires
 
@@ -171,9 +180,9 @@ Generates a signed token. This is probably the only method you'll ever need to c
 
 =over
 
-=item data
+=item user_data
 
-Required. A hash reference of parameters you wish to pass to the service.
+Required if not specified in constructor. Defaults to the C<data> element in the constructor.A hash reference of parameters you wish to pass to the service.
 
 =back
 
@@ -185,7 +194,7 @@ Generates a list of claims based upon the options provided to the constructor.
 
 =over
 
-=item data
+=item user_data
 
 Required. A hash reference of parameters you wish to pass to the service.
 
