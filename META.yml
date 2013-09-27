@@ -27,4 +27,4 @@ requires:
   Test::Deep: 0
   Test::More: 0
   URI: 0
-version: 0.0200
+version: 0.0201

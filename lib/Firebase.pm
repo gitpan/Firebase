@@ -1,6 +1,6 @@
 package Firebase;
 {
-  $Firebase::VERSION = '0.0200';
+  $Firebase::VERSION = '0.0201';
 }
 
 use Moo;
@@ -95,7 +95,7 @@ Firebase - An interface to firebase.com.
 
 =head1 VERSION
 
-version 0.0200
+version 0.0201
 
 =head1 SYNOPSIS
 
