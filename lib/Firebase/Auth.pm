@@ -1,6 +1,6 @@
 package Firebase::Auth;
 {
-  $Firebase::Auth::VERSION = '0.0202';
+  $Firebase::Auth::VERSION = '0.0300';
 }
 
 use strict;
@@ -101,7 +101,7 @@ Firebase::Auth - Auth token generation for firebase.com.
 
 =head1 VERSION
 
-version 0.0202
+version 0.0300
 
 =head1 SYNOPSIS
 
