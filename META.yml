@@ -27,4 +27,7 @@ requires:
   Test::Deep: 0
   Test::More: 0
   URI: 0
-version: 0.0201
+resources:
+  bugtracker: http://github.com/rizen/Firebase/issues
+  repository: git://github.com/rizen/Firebase.git
+version: 0.0202

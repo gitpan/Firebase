@@ -1,6 +1,6 @@
 package Firebase;
 {
-  $Firebase::VERSION = '0.0201';
+  $Firebase::VERSION = '0.0202';
 }
 
 use Moo;
@@ -28,6 +28,11 @@ has authobj        => (
     default     => sub {
         Firebase::Auth->new(%{$_[0]->auth});
     },
+);
+
+has debug => (
+    is          => 'rw',
+    default     => sub { '' },
 );
 
 has agent => (
@@ -71,6 +76,7 @@ sub process_request {
 
 sub process_response {
     my ($self, $response) = @_;
+    $self->debug($response->header('X-Firebase-Auth-Debug'));
     if ($response->is_success) {
         if ($response->decoded_content eq 'null') {
             return undef;
@@ -95,7 +101,7 @@ Firebase - An interface to firebase.com.
 
 =head1 VERSION
 
-version 0.0201
+version 0.0202
 
 =head1 SYNOPSIS
 
@@ -184,6 +190,14 @@ Delete some data from a firebase.
 The path where the info is that you want deleted.
 
 =back
+
+
+
+=head2 debug
+
+If C<debug> has been set to a true value in C<Firebase::Auth>, this will return the debug message returned with the previous response.
+
+
 
 
 =head2 create_uri

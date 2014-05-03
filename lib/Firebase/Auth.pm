@@ -1,6 +1,6 @@
 package Firebase::Auth;
 {
-  $Firebase::Auth::VERSION = '0.0201';
+  $Firebase::Auth::VERSION = '0.0202';
 }
 
 use strict;
@@ -101,7 +101,7 @@ Firebase::Auth - Auth token generation for firebase.com.
 
 =head1 VERSION
 
-version 0.0201
+version 0.0202
 
 =head1 SYNOPSIS
 
@@ -139,6 +139,8 @@ Defaults to C<\0>. If set to C<\1> (a reference to zero or one) then full access
 =item debug
 
 Defaults to C<\0>. If set to C<\1> (a reference to zero or one) then verbose error messages will be returned from service calls.
+
+B<NOTE:> To access debug info, call C<debug> on the L<Firebase> object after making a request.
 
 =item expires
 
