@@ -27,6 +27,11 @@ has authobj        => (
     },
 );
 
+has debug => (
+    is          => 'rw',
+    default     => sub { '' },
+);
+
 has agent => (
     is          => 'ro',
     required    => 0,
@@ -83,6 +88,7 @@ sub process_request {
 
 sub process_response {
     my ($self, $response) = @_;
+    $self->debug($response->header('X-Firebase-Auth-Debug'));
     if ($response->is_success) {
         if ($response->decoded_content eq 'null') {
             return undef;
@@ -231,6 +237,14 @@ Delete some data from a firebase.
 The path where the info is that you want deleted.
 
 =back
+
+
+
+=head2 debug
+
+If C<debug> has been set to a true value in C<Firebase::Auth>, this will return the debug message returned with the previous response.
+
+
 
 
 =head2 create_uri
