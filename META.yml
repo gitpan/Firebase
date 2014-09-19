@@ -30,4 +30,4 @@ requires:
 resources:
   bugtracker: http://github.com/rizen/Firebase/issues
   repository: git://github.com/rizen/Firebase.git
-version: '1.0001'
+version: '1.0002'

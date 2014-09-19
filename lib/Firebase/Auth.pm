@@ -1,5 +1,5 @@
 package Firebase::Auth;
-$Firebase::Auth::VERSION = '1.0001';
+$Firebase::Auth::VERSION = '1.0002';
 use strict;
 use warnings;
 use Digest::SHA qw(hmac_sha256);
@@ -57,8 +57,8 @@ sub create_token {
 
 sub create_claims {
     my ($self, $data) = @_;
-    if (! $self->admin && ! exists $data->{uid}) {
-        ouch('missing param', 'Data payload must contain a "uid" key that must be a string.', 'uid');
+    if (! exists $data->{uid}) {
+        ouch('missing param', 'Data payload must contain a "uid" key that must be a string.', 'uid') unless $self->admin;
     }
     elsif ($data->{uid} eq '') { 
         ouch('param out of range', 'Data payload must contain a "uid" key that must not be empty or null.', 'uid');
@@ -108,7 +108,7 @@ Firebase::Auth - Auth token generation for firebase.com.
 
 =head1 VERSION
 
-version 1.0001
+version 1.0002
 
 =head1 SYNOPSIS
 

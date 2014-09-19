@@ -1,5 +1,5 @@
 package Firebase;
-$Firebase::VERSION = '1.0001';
+$Firebase::VERSION = '1.0002';
 use Moo;
 use Firebase::Auth;
 use HTTP::Thin;
@@ -113,7 +113,7 @@ Firebase - An interface to firebase.com.
 
 =head1 VERSION
 
-version 1.0001
+version 1.0002
 
 =head1 SYNOPSIS
 
