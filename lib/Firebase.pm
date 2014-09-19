@@ -1,5 +1,5 @@
 package Firebase;
-$Firebase::VERSION = '0.0400';
+$Firebase::VERSION = '1.0001';
 use Moo;
 use Firebase::Auth;
 use HTTP::Thin;
@@ -113,13 +113,13 @@ Firebase - An interface to firebase.com.
 
 =head1 VERSION
 
-version 0.0400
+version 1.0001
 
 =head1 SYNOPSIS
 
  use Firebase;
  
- my $fb = Firebase->new(firebase => 'myfirebase', auth => { secret => 'xxxxxxx', data => { id => 'xxx', username => 'fred' }, admin => \1 } );
+ my $fb = Firebase->new(firebase => 'myfirebase', auth => { secret => 'xxxxxxx', data => { uid => 'xxx', username => 'fred' }, admin => \1 } );
  
  my $result = $fb->put('foo', { this => 'that' });
  my $result = $fb->get('foo'); # or $fb->get('foo/this');
